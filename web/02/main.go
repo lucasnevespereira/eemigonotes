@@ -8,6 +8,7 @@ import (
 )
 
 func someHandlerFunc(rw http.ResponseWriter, r *http.Request) {
+	r.Header.Set("Content-type", "text/html; charset; charset-utf8")
 	rw.Write([]byte("Hello"))
 }
 
@@ -16,6 +17,8 @@ type Controller struct {
 }
 
 func (c *Controller) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
+	rw.Header().Set("Content-type", "text/html; charset=utf8")
+	rw.WriteHeader(http.StatusOK)
 	fmt.Fprint(rw, c.Message)
 }
 
